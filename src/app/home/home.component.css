@@ -1,0 +1,29 @@
+.home-btn{
+    font-size: 1.5rem;
+    width:12rem;
+    height:12rem;
+}
+
+.web3-account{
+    position: absolute;
+    top:1rem;
+    left:1rem;
+}
+
+#buy-token-btn{
+    margin-left:15%;
+}
+
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:row;
+}

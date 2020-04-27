@@ -1,0 +1,30 @@
+<div class="flex-container">
+
+    <div class="uploader-row">
+        <div class="custom-file uploader">
+            <input type="file" class="custom-file-input" id="VC"
+                onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+            <label class="custom-file-label" for="VC" data-browse="Browse">Upload a VC...</label>
+        </div>
+        <button class="btn btn-dark upload-btn" (click)="uploadVC()">Upload VC</button>
+    </div>
+
+    <div class="vc-preview-container">
+            <div class="vc-no-preview-wrapper" id="no-preview-wrapper">
+                <div>No VC uploaded yet</div>
+            </div>
+            <pre id="result" class="pre" style="display: none"></pre>
+    </div>
+
+    <div class="verify-group-row">
+        <button class="btn btn-danger clear-btn" id="clear-btn"(click)="clearScreen()">Clear</button>
+        <button class="btn btn-dark verify-btn" id="verify-btn"(click)="verifyVC()">Verify Address</button>
+        <div class="progress">
+                <div id="custom-bar" class="progress-bar progress-bar-striped bg-success verification-inactive" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+        </div>
+    </div>
+    <div class="alert alert-success success-msg-tab" id="success-msg-tab" role="alert" style="display: none">
+            Address verified with success!
+    </div>
+
+</div>

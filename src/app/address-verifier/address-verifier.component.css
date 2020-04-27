@@ -1,0 +1,138 @@
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+}
+
+.form-container {
+    padding:3rem;
+    border: 1px solid #343a40;
+    border-radius: .25rem;
+    background-color: #343a40;
+    color:white;
+    font-size: 1.5rem;
+}
+
+.form-control-file{
+    border: 1px solid white;
+    border-radius: .25rem;
+}
+
+.uploader{
+    width:40%;
+}
+
+.upload-btn {
+    width: 10%;
+    margin-left:2%;
+}
+
+.uploader-row {
+    display: flex;
+    direction: row;
+    align-content: center;
+    justify-content: center;
+    width:100%;
+}
+
+/*pre {
+    background: #343a40;
+    border: 1px solid #2a2f36;
+    border-radius: .25rem;
+    border-left: 3px solid #f36d33;
+    color: white;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    margin-top: 1.6rem;
+    width: 52%;
+    height: 40vh;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}*/
+
+pre {
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 1rem;
+    color: white;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+.vc-preview-container {
+    background: #343a40;
+    border: 1px solid #2a2f36;
+    border-radius: .25rem;
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    margin-top: 1.6rem;
+    width: 52%;
+    height: 40vh;
+    overflow: auto;
+}
+
+.vc-no-preview-wrapper{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+}
+
+.verify-group-row {
+    display: flex;
+    direction: row;
+    align-content: center;
+    justify-content: center;
+    width:100%;
+}
+
+.progress {
+    width:28%;
+    height:100%;
+}
+
+.verification-inactive {
+    width: 0%;
+}
+
+.verification-active {
+    width:100%;
+}
+
+.verify-btn{
+    width: 15%;
+    margin-right:2%;
+}
+
+.clear-btn{
+    width: 5%;
+    margin-right:2%;
+}
+
+.success-msg-tab {
+    margin-top:1.6rem;
+    width: 52%;
+}
+
