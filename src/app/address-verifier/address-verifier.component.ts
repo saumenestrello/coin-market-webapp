@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { EthService } from '../eth.service';
 
 @Component({
   selector: 'address-verifier',
@@ -10,7 +11,7 @@ export class AddressVerifierComponent implements OnInit {
 
   private textVC: string;
 
-  constructor() { }
+  constructor(private es : EthService) { }
 
   ngOnInit() {
 
@@ -35,16 +36,18 @@ export class AddressVerifierComponent implements OnInit {
 
   verifyVC(): boolean {
 
-    $("#custom-bar").removeClass("verification-inactive");
-    $("#custom-bar").addClass("verification-active");
-
     var jsonVC = JSON.parse(this.textVC);
 
-    var iss = jsonVC.payload.iss;
-    var sub = jsonVC.payload.sub;
-    var signature = jsonVC.signature;
-
-    document.getElementById("success-msg-tab").style.setProperty("display", "inherit");
+    this.es.verifyAddress(jsonVC)
+    .then((res)=>{
+      if(res.status){
+        $("#custom-bar").removeClass("verification-inactive");
+        $("#custom-bar").addClass("verification-active");
+        document.getElementById("success-msg-tab").style.setProperty("display", "inherit");
+      } else {
+        document.getElementById("error-msg-tab").style.setProperty("display", "inherit");
+      }
+    });
 
     return true;
   }
@@ -64,7 +67,9 @@ export class AddressVerifierComponent implements OnInit {
 
     $("#custom-bar").addClass("verification-inactive");
     $("#custom-bar").removeClass("verification-active");
+
     document.getElementById("success-msg-tab").style.setProperty("display", "none");
+    document.getElementById("error-msg-tab").style.setProperty("display", "none");
   }
 
 }

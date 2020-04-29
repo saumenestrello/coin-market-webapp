@@ -10,6 +10,17 @@
     color:white;
 }
 
+.back-button{
+  display: inline-block;
+  font-size: 1.1rem;
+}
+
+#account {
+  display: inline-block;
+  margin-left:.7rem;
+  font-size: 1.1rem;
+}
+
 .loader {
   display: none;
   border: 16px solid #f3f3f3; /* Light grey */

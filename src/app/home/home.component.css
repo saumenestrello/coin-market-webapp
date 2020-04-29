@@ -1,7 +1,13 @@
 .home-btn{
+    font-size: 4rem;
+    width:15rem;
+    height:15rem;
+    border-radius: 50%;
+    border-color: white;
+}
+
+.home-btn p {
     font-size: 1.5rem;
-    width:12rem;
-    height:12rem;
 }
 
 .web3-account{
@@ -26,4 +32,15 @@
     align-items: center;
     justify-content: center;
     flex-direction:row;
+}
+
+.bg-item{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #e8ecef;
+    height:50%;
+    width:100%;
+    z-index: -1;
+    border-top: 1px solid #ced4d9;
 }

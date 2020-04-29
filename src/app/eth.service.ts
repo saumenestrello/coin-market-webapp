@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-//import * as Web3 from 'web3';
-declare let Web3: any;
+import { $ } from 'protractor';
+const Web3 = require('web3'); 
+
 declare let require: any;
 declare let window: any;
 
-let verifierABI = "aba"; //require('./abi/VerifierAddress.json');
+let verifierABIFile = require('../abi/AddressVerifier.json');
+let verifierABI = verifierABIFile.abi; 
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class EthService {
   private _web3: any;
 
   private _verifierContract: any;
-  private _verifierContractAddress: string = "0xbc84f3bf7dd607a37f9e5848a6333e6c188d926c";
+  private _verifierContractAddress: string = "0x6cB0C10dbE0Fd39d9E10f0Bc08f27Bb2694E07d5";
 
   constructor() {
     if (typeof window.web3 !== 'undefined') {
@@ -28,7 +30,7 @@ export class EthService {
       );
     }
 
-    this._verifierContract = ""; //this._web3.eth.contract(verifierABI).at(this._verifierContractAddress);
+    this._verifierContract = new this._web3.eth.Contract(verifierABI,this._verifierContractAddress);
   }
 
   public async getAccount(): Promise<string> {
@@ -67,6 +69,43 @@ export class EthService {
       }
       return false;
   }
+
+  public verifyAddress(vc:any) {
+    if(this._verifierContract != null){
+
+      var iss = vc.payload.iss;
+      var sub = vc.payload.sub;
+      var signature = vc.signature;
+
+      var header = JSON.stringify(vc.header);
+      var payload = JSON.stringify(vc.payload);
+
+      var stringToHash = header + "." + payload;
+
+      var hash = this._web3.utils.soliditySha3(stringToHash);
+
+    /* this._verifierContract.methods
+     .isVerified("0xcf87ce923fe20968F491556Df7833C948400d68a")
+      .call()
+      .then(function(receipt){alert(receipt)}); */
+
+     return this._verifierContract.methods.verify(sub,iss,hash,signature)
+      .send({
+          from: this._account
+      }/*,function(error){
+         if(error){
+          alert("An error eccourred. Couldn't validate given address");
+          return false;
+         } else {
+          return true;
+         }
+      }*/)
+     /* .err(()=>{
+        alert("An error eccourred. Couldn't validate given address");
+      })*/; 
+    } 
+  }
+
   /*public async getUserBalance(): Promise<number> {
     let account = await this.getAccount();
   

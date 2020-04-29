@@ -14,11 +14,17 @@ constructor(private router: Router,private es: EthService) { }
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) 
 :boolean{   
     
+    if(state.url == "/home") {
+        document.getElementById("back-button").style.setProperty("display", "none");
+    } else {
+        document.getElementById("back-button").style.setProperty("display", "inline-block");
+    }
+
     if(!this.es.accountSet()){
         this.es.getAccount().then(()=>{
             var check = this.es.accountSet();
             if(check){
-                document.getElementById("account").innerText = this.es.getCurrentAccount();
+                document.getElementById("address").innerText = this.es.getCurrentAccount();
                 return true;
             } else {
                 this.router.navigateByUrl("/web3-error");

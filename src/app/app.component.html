@@ -1,5 +1,11 @@
 <div class="header" id="nav">
-    <div id="account"><span>account: </span></div>
+        <div class="back-button" id="back-button" (click)="goToHome()">
+                <i class="fas fa-arrow-left"></i>
+        </div>
+    <div id="account">account: <span id="address"></span> 
+        <span id="verified-icon" style="display:none"><i class="fas fa-check-circle"></i>
+        </span>
+    </div>
 </div>
 <router-outlet></router-outlet>
 <div class="loader" id="spinner"></div>

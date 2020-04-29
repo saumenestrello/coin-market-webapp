@@ -17,11 +17,15 @@ export class AppComponent {
     document.getElementById("spinner").style.setProperty("display","visible");
     await this.es.getAccount()
     .then(()=>{
-      document.getElementById("account").innerHTML += this.es.getCurrentAccount();
+      document.getElementById("address").innerHTML = this.es.getCurrentAccount();
       document.getElementById("spinner").style.setProperty("display","none");
       document.getElementById("nav").style.setProperty("display","initial");
       this.router.navigateByUrl("/home");
     });
+  }
+
+  goToHome(){
+    this.router.navigateByUrl("/home");
   }
 
 }
