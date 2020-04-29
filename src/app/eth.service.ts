@@ -82,14 +82,14 @@ export class EthService {
 
       var stringToHash = header + "." + payload;
 
-      var hash = this._web3.utils.soliditySha3(stringToHash);
+      var hash = this._web3.utils.soliditySha3(stringToHash); //calculate hash
 
     /* this._verifierContract.methods
      .isVerified("0xcf87ce923fe20968F491556Df7833C948400d68a")
       .call()
       .then(function(receipt){alert(receipt)}); */
 
-     return this._verifierContract.methods.verify(sub,iss,hash,signature)
+     return this._verifierContract.methods.verify(sub,iss,hash,signature) //call contract method
       .send({
           from: this._account
       }/*,function(error){
