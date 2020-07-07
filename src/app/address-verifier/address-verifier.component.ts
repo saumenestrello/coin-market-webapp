@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { EthService } from '../eth.service';
+import { ZokratesService } from '../zokrates.service';
 
 @Component({
   selector: 'address-verifier',
@@ -11,7 +12,7 @@ export class AddressVerifierComponent implements OnInit {
 
   private textVC: string;
 
-  constructor(private es : EthService) { }
+  constructor(private es : EthService, private zok: ZokratesService) { }
 
   ngOnInit() {
 
@@ -37,6 +38,11 @@ export class AddressVerifierComponent implements OnInit {
   verifyVC(): boolean {
 
     var jsonVC = JSON.parse(this.textVC);
+
+    this.zok.parseVC(jsonVC);
+    this.zok.generateProof().then(()=>{
+      console.log('proof generated with success');
+    });
 
     this.es.verifyAddress(jsonVC)
     .then((res)=>{

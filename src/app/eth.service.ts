@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { initialize } from 'zokrates-js';
 import { $ } from 'protractor';
 const Web3 = require('web3'); 
 
@@ -18,20 +16,16 @@ export class EthService {
   public _account: string = null;
   private _web3: any;
 
-  private _circuit: string;
-
   private _verifierContract: any;
   private _verifierContractAddress: string = "0x6cB0C10dbE0Fd39d9E10f0Bc08f27Bb2694E07d5";
 
-  constructor(private http: HttpClient) {
+  constructor() {
     if (typeof window.web3 !== 'undefined') {
       // Use Mist/MetaMask's provider
       this._web3 = new Web3(window.web3.currentProvider);
       console.log("provider " + this._web3);
 
-      http.get('../assets/vc_proof_generator.txt',{ responseType: 'text' }).subscribe(data => {
-        this._circuit = data;
-      });
+      
 
     } else {
       console.warn(
@@ -115,22 +109,7 @@ export class EthService {
     } 
   }
 
-  private getProof(){
-    initialize().then((zokratesProvider) => {
-      // we have to initialize the wasm module before calling api functions
-      zokratesProvider.compile("def main(private field a) -> (field): return a", "main", this.importResolver)
-  });
-  }
-
-  private importResolver(location, path) {
-    // implement your resolving logic here
-    return { 
-      source: "def main() -> (): return", 
-      location: path 
-    };
-  }
-  
-  
+ 
 
   /*public async getUserBalance(): Promise<number> {
     let account = await this.getAccount();

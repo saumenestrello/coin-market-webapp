@@ -1,0 +1,26 @@
+import "hashes/sha256/512bitPadded" as sha256
+import "utils/pack/pack256" as pack256
+import "ecc/babyjubjubParams" as context
+import "signatures/verifyEddsa" as verifyEddsa
+
+
+def main(field[256] leaf0Key, private field[256] leaf0Value, private field[256] leaf1Hash, private field[256] subtree1Hash, private field[256] merkleRoot, private field[2] R, private field S,private field[2] A,private field[256] M0,private field[256] M1)-> (field):
+	
+    //signature verification
+
+    field[10] context = context()
+	
+    field sig_check = verifyEddsa(R,S,A,M0,M1,context)	
+
+    //check merkleRoot
+	
+    field[256] leaf0Hash = sha256(leaf0Key,leaf0Value)
+    field[256] subtree0Hash = sha256(leaf0Hash,leaf1Hash)
+
+    field[256] calcRoot = sha256(subtree0Hash,subtree1Hash)
+
+    field root_check = if pack256(calcRoot) == pack256(merkleRoot) then 1 else 0 fi
+
+    field res = if sig_check + root_check == 2 then 1 else 0 fi
+
+    return res
