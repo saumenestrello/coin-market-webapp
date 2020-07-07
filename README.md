@@ -18,6 +18,14 @@ npm install web3
 ```
 npm install --save-dev @fortawesome/fontawesome-free
 ```
+* zokrates
+```
+npm install zokrates-js
+```
+* bitset
+```
+npm i bitset
+```
 
 
 
