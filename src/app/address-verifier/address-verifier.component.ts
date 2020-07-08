@@ -15,7 +15,6 @@ export class AddressVerifierComponent implements OnInit {
   constructor(private es : EthService, private zok: ZokratesService) { }
 
   ngOnInit() {
-
   }
 
   uploadVC() {

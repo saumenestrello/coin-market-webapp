@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { Web3ErrorComponent } from './web3-error/web3-error.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
